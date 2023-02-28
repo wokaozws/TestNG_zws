@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/Dell/OneDrive/IdeaProjects/TestNG_zws/pom.xml">
-        <classes/>
+    <test verbose="2" preserve-order="true" name="C:/Users/Dell/OneDrive/IdeaProjects/TestNG_zws">
+        <classes>
+            <class name="test.main.TestNG">
+                <methods>
+                    <include name="login_test"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>
