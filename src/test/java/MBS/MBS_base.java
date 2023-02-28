@@ -39,5 +39,22 @@ public class MBS_base {
             driver.findElement(By.cssSelector("aui-button:nth-child(2)")).click();
         }
 
+
+    }
+    public static void Delete_user(WebDriver driver){
+        // Test name: 123
+        // Step # | name | target | value | comment
+        // 1 | open | /zzydemo |  |
+        // 2 | setWindowSize | 1388x910 |  |
+        driver.manage().window().setSize(new Dimension(1388, 910));
+        driver.findElement(By.cssSelector("ul:nth-child(2) > .first-title")).click();
+        // 3 | click | xpath=//td/aui-checkbox/label/span |  |
+        driver.findElement(By.xpath("//td/aui-checkbox/label/span")).click();
+        // 4 | click | xpath=//aui-dropdown/div/span |  |
+        driver.findElement(By.xpath("//aui-dropdown/div/span")).click();
+        // 5 | click | css=aui-dropdown-item:nth-child(7) > .item |  |
+        driver.findElement(By.cssSelector("aui-dropdown-item:nth-child(7) > .item")).click();
+        // 6 | click | css=.aui-message-box__btns > aui-button:nth-child(2) |  |
+        driver.findElement(By.cssSelector(".aui-message-box__btns > aui-button:nth-child(2)")).click();
     }
 }

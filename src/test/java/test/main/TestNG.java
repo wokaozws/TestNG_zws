@@ -18,10 +18,15 @@ public class TestNG {
         System.out.println("测试项：MBS登录");
         MBS_base.Login_MOS(driver);
     }
-    @Test(dependsOnMethods = {"login_test"})
+    @Test(dependsOnMethods = {"login_test"},enabled = true)
     public  void add_MBS_user()  {
         System.out.println("测试项：添加MBS用户");
         MBS_base.Create_User(this.driver, 1);
+    }
+    @Test(dependsOnMethods = {"add_MBS_user"},enabled = true)
+    void del_MBS_user(){
+        System.out.println("测试项：删除MBS用户");
+        MBS_base.Delete_user(driver);
     }
     @BeforeSuite
     public void beforeSuiteTest(){
