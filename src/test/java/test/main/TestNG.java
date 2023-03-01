@@ -23,7 +23,7 @@ public class TestNG {
     @Test(dependsOnMethods = {"login_test"},enabled = true)
     public  void add_MBS_user()  {
         System.out.println("测试项：添加MBS用户");
-        MBS_base.Create_User(this.driver, 1);
+        MBS_base.Create_User(this.driver, 2);
     }
     @Test(dependsOnMethods = {"add_MBS_user"},enabled = true)
     void del_MBS_user(){
@@ -32,9 +32,9 @@ public class TestNG {
     }
     @AfterMethod
     void afterTestCase(){
-        System.out.println("用例后静止,返回标题");
+        System.out.println("---[用例后静止,返回标题]---");
         //隐式等待2秒加载整个界面
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//*[@id=\"app\"]/aui-app/aui-page/aui-console/div[1]/a/img")).click();
 //        String wait_txt=".";
 //        for(int i =0;i<3;i++){
@@ -47,21 +47,22 @@ public class TestNG {
     }
     @BeforeSuite
     public void beforeSuiteTest(){
-        System.out.println("测试注解.beforeSuiteTest套件，仅一次");
+        System.out.println("测试环境准备...");
+        String webserver_ip="172.16.30.69";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options.addArguments("--ignore-certificate-errors"));
         driver.manage().window().setSize(new Dimension(1388, 910));
-        System.out.println("当前执行的服务器：69");
-        driver.get("https://172.16.30.69:9074/zzydemo#/login");
+        System.out.println("当前执行的服务器："+webserver_ip);
+        driver.get("https://"+webserver_ip+":9074/zzydemo#/login");
 
     }
     @AfterSuite
     public void afterSuiteTest(){
-        System.out.println("测试注解：afterSuiteTest 测试结束");
+        System.out.println("〓〓〓【测试结束】〓〓〓");
 
 
-        System.out.println("selenium quit now");
+        System.out.println("selenium 退出");
         driver.quit();
 
 
