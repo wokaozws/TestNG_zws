@@ -1,5 +1,6 @@
 package test.main;
 
+import MBS.MBS_CommonTestCase;
 import MBS.MBS_base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ import java.time.Duration;
 
 
 import static test.main.TestAssert.judge_MBS_add_user;
+import static test.main.choose_explorer.*;
 
 public class TestNG {
     WebDriver driver;
@@ -37,20 +39,15 @@ public class TestNG {
     @AfterMethod
     void afterTestCase(){
         System.out.println("---[用例后静止,返回标题]---");
-        //隐式等待2秒加载整个界面
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
-        driver.findElement(By.xpath("//*[@id=\"app\"]/aui-app/aui-page/aui-console/div[1]/a/img")).click();
+        MBS_CommonTestCase.MENU_click(driver);
     }
     @BeforeSuite
     public void beforeSuiteTest(){
         System.out.println("测试环境准备...");
         String webserver_ip="172.16.30.69";
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        driver = new ChromeDriver(options.addArguments("--ignore-certificate-errors"));
-        driver.manage().window().setSize(new Dimension(1388, 910));
         System.out.println("当前执行的服务器："+webserver_ip);
-        driver.get("https://"+webserver_ip+":9074/zzydemo#/login");
+        choose_explorer.explorer_choice(driver,webserver_ip);
+
     }
     @AfterSuite
     public void afterSuiteTest(){
